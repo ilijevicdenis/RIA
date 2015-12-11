@@ -1,0 +1,106 @@
+CREATE TABLE drzava (
+drzava_id int auto_increment,
+naziv varchar(100),
+primary key (drzava_id));
+ 
+CREATE TABLE grad(
+grad_id INT auto_increment,
+grad_ime VARCHAR(50) NOT NULL,
+postanski_broj varchar(20) NOT NULL,
+drzava_id int not null,
+primary key (grad_id),
+constraint unq_grad unique(postanski_broj),
+constraint drzava_fk foreign key (drzava_id) references drzava(drzava_id));
+ 
+create table osoba (
+osoba_id int auto_increment,
+ime varchar(50) not null, 
+prezime varchar(50) not null,
+adresa varchar(100) not null, 
+kontakt_broj varchar(50) not null,
+email varchar(50) not null,
+password varchar(50) not null,
+grad_id int not null,
+primary key (osoba_id),
+constraint grad_fk foreign key (grad_id) references grad(grad_id),
+constraint unq_email_osoba unique(email));
+ 
+create table kamp (
+kamp_id int auto_increment,
+kamp_ime varchar(50) not null,
+adresa varchar(50) not null,
+grad_id int not null,
+broj_parcela int not null,
+opis_kampa MEDIUMTEXT,
+primary key (kamp_id),
+constraint grad_kamp_fk foreign key (grad_id) references grad(grad_id));
+ 
+create table parcela (
+parcela_id int not null auto_increment primary key,
+sifra_parcele int,
+kamp_id int not null,
+struja char(2) not null,
+voda   char(2) not null,
+cijena_nocenja decimal(8,2) not null,
+opis mediumtext,
+constraint kamp_unq unique (sifra_parcele, kamp_id),
+constraint kamp_fk foreign key (kamp_id) references kamp(kamp_id));
+ 
+create table slika (
+slika_id int auto_increment,
+parcela_id int not null,
+path mediumtext not null, 
+primary key (slika_id),
+constraint fk_slika_parcela foreign key (parcela_id) references parcela(parcela_id));
+ 
+create table gostovanje (
+gostovanje_id int not null auto_increment,
+osoba_id int not null,
+datum_rezervacije date not null,
+datum_dolaska date null,
+datum_odlaska date null,
+parcela_id int not null,
+primary key (gostovanje_id),
+constraint fk_parcela_dolazak_odlazak foreign key (parcela_id) references parcela(parcela_id),
+constraint fk_osoba_dolazak_odlazak foreign key (osoba_id) references osoba(osoba_id));
+
+create table placanje (
+placanje_id int not null auto_increment primary key,
+gostovanje_id int not null,
+nocenja int,
+cijena_nocenja decimal(8,2),
+porez decimal(8,2),
+ukupno decimal(8,2),
+constraint trans_id_fk_pk foreign key (gostovanje_id) references gostovanje(gostovanje_id));
+
+create table dostupnost (
+ dostupnost_id int not null auto_increment primary key,
+ kamp_id int not null,
+ parcela_id int not null,
+ dostupnost_status varchar(11) not null,
+ opis varchar(100) not null,
+ datum_od date not null,
+ datum_do date not null,
+ constraint kamp_fk_d foreign key (kamp_id) references kamp(kamp_id),
+ constraint parcela_fk_d foreign key (parcela_id) references parcela(parcela_id)
+);
+
+CREATE VIEW slobodne_parcele AS 
+SELECT parcela.parcela_id,
+	   kamp.kamp_ime as Kamp, 
+       kamp.adresa AS Adresa,
+       grad.grad_ime AS Grad,
+       parcela.sifra_parcele AS "Sifra parcele",
+       parcela.cijena_nocenja AS Cijena,
+       parcela.opis AS Opis,
+	   parcela.struja AS Struja,
+	   parcela.voda AS Voda,
+       group_concat(slika.path) AS slika_path
+FROM gostovanje  
+INNER JOIN parcela ON gostovanje.parcela_id = parcela.parcela_id
+INNER JOIN kamp ON parcela.kamp_id = kamp.kamp_id
+INNER JOIN grad ON kamp.grad_id = grad.grad_id
+INNER JOIN slika ON slika.parcela_id = parcela.parcela_id
+WHERE parcela.dostupnost = 'Slobodno'
+ORDER BY kamp.kamp_id, parcela.sifra_parcele;
+
