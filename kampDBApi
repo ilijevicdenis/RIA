@@ -1,0 +1,282 @@
+delimiter //
+CREATE procedure sp_addcountry
+(
+	IN p_countryname VARCHAR(100)
+)
+BEGIN
+	INSERT INTO drzava (naziv) VALUES (p_countryname);
+END //
+
+delimiter //
+CREATE FUNCTION ufn_getcountryid
+(
+	p_countryname VARCHAR(100)
+)
+RETURNS INT(11)
+BEGIN
+	DECLARE v_countryid INT(11);
+
+	SELECT 
+		drzavaid INTO v_countryid
+	FROM drzava
+	WHERE naziv = p_countryname;
+
+RETURN v_countryid;
+END //
+
+delimiter //
+CREATE PROCEDURE sp_addcity
+(
+	IN p_countryname VARCHAR(100),
+	IN p_cityname 	 VARCHAR(50),
+	IN p_zipcode  	 VARCHAR(20)
+)
+BEGIN 
+	DECLARE v_countryid INT(11);
+	
+	SET v_countryid = ufn_getcountryid(p_countryname);
+
+	INSERT INTO grad (grad_ime, postanski_broj, drzava_id)
+	VALUES (p_cityname, p_zipcode, v_countryid);
+END //
+
+DELIMITER //
+CREATE function ufn_getcityid
+(
+	p_countryname VARCHAR(100),
+	P_cityname VARCHAR(50)
+)
+RETURNS INT(11)
+BEGIN 
+	DECLARE v_countryid INT(11);
+	DECLARE v_cityid  INT(11);
+
+	SET v_countryid = ufn_getcountryid(p_countryname);
+
+	SELECT grad_id INTO v_cityid
+	FROM grad
+	WHERE drzava_id = v_countryid;
+
+	RETURN v_coutryid;
+END //
+	
+DELIMITER //
+CREATE PROCEDURE sp_addcamp
+(
+	IN p_campname VARCHAR(50),
+	IN p_campaddress VARCHAR(50),
+	IN p_cityname VARCHAR(50),
+	IN p_numberofparcels INT(11),
+	IN p_parceldescription mediumtext
+)
+BEGIN 
+	DECLARE v_cityid INT(11);
+
+	SET v_cityid = ufn_getcityid(p_cityname);
+	INSERT INTO kamp (kamp_ime, adresa, grad_id, broj_parcela, opis_kampa) 
+	VALUES (p_campname, p_campaddress, v_cityid, p_numberofparcels, p_parceldesription);
+END //
+
+DELIMITER //
+CREATE FUNCTION ufn_getcampid
+(
+	p_cityname VARCHAR(50),
+	p_campname VARCHAR(50)
+) RETURNS INT(11)
+BEGIN 
+	DECLARE v_cityid INT(11);
+	DECLARE v_campid INT(11);
+
+	SET v_cityid = ufn_getcityid(p_cityname);
+
+	SELECT kamp_id INTO v_campid
+	FROM kamp	
+	WHERE kamp_ime = p_campname
+	AND grad_id = v_cityid;
+
+	RETURN v_campid;
+END //
+
+DELIMITER //
+CREATE PROCEDURE sp_addparcel
+(
+	IN p_parcelcode INT(11),
+	IN p_electricitybit CHAR(2),
+	IN p_aquabit CHAR(2),
+	IN p_pricepernight DECIMAL(8,2),
+	IN p_description MEDIUMTEXT,
+	IN p_campname VARCHAR(50)
+)
+BEGIN 
+	DECLARE v_campid INT(11);
+	
+	SET v_campid = ufn_getcampid(p_campname);
+	INSERT INTO parcela (sifra_parcele, kamp_id, struja, voda, cijena_nocenja, opis)
+	VALUES (p_parcelcode, v_campid, p_electricitybit, p_aquabit, p_description, p_campname);
+END //
+
+DELIMITER //
+CREATE FUNCTION ufn_getparcelid
+(
+	p_campname VARCHAR(50),
+	p_cityname VARCHAR(50)
+) RETURNS INT(11)
+BEGIN
+	DECLARE v_cityid INT(11);
+	DECLARE v_campid INT(11);
+	DECLARE v_parcelid INT(11);
+	
+	SET v_cityid = ufn_getcityid(p_cityname);
+	SET v_campid = ufn_getcampid(p_campname);
+
+	SELECT parcela_id INTO v_parcelid
+	FROM parcela
+	INNER JOIN kamp
+	WHERE parcela.kamp_id = v_campid
+	AND kamp.kamp_id = v_campid
+	AND kamp.grad_id = v_cityid;
+
+	RETURN v_parcelid;
+END //
+
+DELIMITER //
+CREATE PROCEDURE sp_addpicture
+(
+	IN p_campname VARCHAR(50),
+	IN p_cityname VARCHAR(50),
+	IN p_pictureurl mediumtext
+)
+BEGIN 
+	DECLARE v_parcelid INT(11);
+	SET v_parcelid = ufn_getparcelid(p_campname, p_cityname);
+	
+	INSERT INTO slika (parcela_id, path) VALUES (v_parcelid, p_pictureurl);
+END //
+
+DELIMITER //
+CREATE PROCEDURE sp_addperson
+(
+	IN p_firstname VARCHAR(50),
+	IN p_lastname  VARCHAR(50),
+	IN p_address   VARCHAR(100),
+	IN p_contactnumber VARCHAR(50),
+	IN p_email VARCHAR(50),
+	IN p_password VARCHAR(50),
+	IN p_cityname VARCHAR(50),
+	IN p_countryname VARCHAR(100)
+)
+BEGIN
+	DECLARE v_cityid INT(11);
+	SET v_cityid = ufn_getcityid(p_countryname, p_cityname);
+
+	INSERT INTO osoba (ime, prezime, adresa, kontakt_broj, email, password, grad_id)
+	VALUES (p_firstname, p_lastname, p_address, p_contactnumber, p_email, p_password, v_cityid);
+END //
+
+DELIMITER //
+CREATE FUNCTION ufn_getpersonid
+(
+	p_email VARCHAR(50)
+)
+RETURNS INT(11)
+BEGIN
+	DECLARE v_personid INT(11);
+	
+	SELECT osoba_id INTO v_personid
+	FROM osoba
+	WHERE email = p_email;
+	
+	RETURN v_email;
+END //
+
+DELIMITER //
+CREATE PROCEDURE sp_add_avb_entry
+(
+	IN p_campname VARCHAR(50),
+	IN p_cityname VARCHAR(50),
+	IN p_status VARCHAR(11),
+	IN p_description VARCHAR(100),
+	IN p_datestart DATE,
+	IN p_dateend DATE 
+)
+BEGIN 
+	DECLARE v_campid INT(11);
+	DECLARE v_parcelid INT(11);
+
+	SET v_campid = ufn_getcampid(p_cityname, p_campname);
+	SET v_parcelid = ufn_getparcelid(p_cityname, p_campname);
+
+	INSERT INTO dostupnost (kamp_id, parcela_id, dostupnost_status, opis, datum_od, datum_do)
+	VALUES(v_campid, v_parcelid, p_status, p_description, p_datestart, p_dateend);
+END //
+
+DELIMITER //
+CREATE PROCEDURE sp_add_visit_entry
+(
+	IN p_email VARCHAR(50),
+	IN p_reservationdate DATE,
+	IN p_datecheckin DATE,
+	IN p_datecheckout DATE,
+	IN p_parcelcode INT(11),
+	IN p_cityname VARCHAR(50),
+	IN p_campname VARCHAR(50)
+)
+BEGIN
+	DECLARE v_parcelid INT(11);
+	DECLARE v_personid INT(11);
+
+	set v_personid = ufn_getpersonid(p_email);
+
+	SELECT parcela_id INTO v_parcelid
+	FROM parcela
+	WHERE parcela.kamp_id = 
+		( SELECT 
+			kamp_id
+			FROM kamp
+			INNER JOIN grad
+			  ON kamp.grad_id = grad.grad_id
+			WHERE kamp.kamp_ime = p_campname
+			AND grad.grad_ime = p_cityname
+		);
+	
+	INSERT INTO gostovanje (osoba_id, datum_rezervacije, datum_dolaska, datum_odlaska, parcela_id)
+	VALUES (v_personid, p_reservationdate, p_datecheckin, p_datecheckout, v_parcelid);
+END //
+
+DELIMITER //
+CREATE FUNCTION ufn_getpersonvisitingid
+(
+	p_email VARCHAR(50)
+)
+RETURNS INT(11)
+BEGIN 
+	DECLARE v_personid INT(11);
+	DECLARE v_visitingid INT(11);
+
+	SET v_personid = ufn_getpersonid(p_email);
+	
+	SELECT gostovanje_id INTO v_visitingid
+	FROM gostovanje
+	WHERE osoba_id = v_personid;
+
+	RETURN v_visitingid;
+END //
+
+DELIMITER //
+CREATE PROCEDURE sp_addpayment
+(
+	p_email VARCHAR(50),
+	p_nights INT(11),
+	p_price	DECIMAL(8,2),
+	p_tax DECIMAL(8,2)
+)
+BEGIN 
+	DECLARE v_personvisitingid INT(11);
+	DECLARE v_total DECIMAL(8,2);
+
+	SET v_personvisitingid = ufn_getpersonvisitingid(p_email);
+	SET v_total = (p_price * p_nights) + (p_price * p_nights) * p_tax;
+
+	INSERT INTO placanje (gostovanje_id, nocenja, cijena_nocenja, porez, ukupno)
+	VALUES(v_personvisitingid, p_nights, p_price, p_tax, v_total);
+END //
