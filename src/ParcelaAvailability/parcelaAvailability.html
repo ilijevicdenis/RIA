@@ -1,0 +1,39 @@
+<template>
+	<form>
+		<div>
+			<label>Available from: </label>
+			<input type="date" value.bind="AvailableFrom" />
+		</div>
+		<div>
+			<label>Available until:</label>
+			<input type="date" value.bind="AvaibleUntil">
+		</div>
+		<div>
+			<label>Availability status:</label>
+			<select>
+			</select>
+		</div>
+		<div>
+			<label>Camp:</label>
+			<select>
+			</select>
+		</div>
+		<div>
+			<label>Country:</label>
+			<select>
+			</select>
+		</div>
+		<div>
+			<label>Description:</label>
+			<textarea value.bind="AvailabiliyDescription"></textarea>
+		</div>
+		<div>
+			<label>Parcela code:</label>
+			<input type="text" value.bind="ParcelaCode">
+		</div>
+		<div>
+			<button>Save Entry</button>
+			<button>Cancel</button>
+		</div>
+	</form>
+</template>

@@ -1,0 +1,28 @@
+<template>
+	<form>
+		<div>
+			<label>First name:</label>
+			<input type="text" value.bind="Name">
+		</div>
+		<div>
+			<label>Last Name:</label>
+			<input type="text" value.bind="LastName">
+		</div>
+		<div>
+			<label>Street address: </label>
+			<input type="text" value.bind="StreetAddress">
+		</div>
+		<div>
+			<label>E-mail: </label>
+			<input type="email" value.bind="Email">
+		</div>
+		<div>
+			<label>Passwrod: </label>
+			<input type="password" value.bind="Password">
+		</div>
+		<div>
+			<button click.trigger="Register()">Register</button>
+			<button click.trigger="Cancel()">Cancel</button>
+		<div>
+	</form>
+</template>
