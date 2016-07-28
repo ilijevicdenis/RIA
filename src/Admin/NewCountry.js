@@ -5,10 +5,12 @@ import {inject} from "aurelia-framework";
 export class NewCountry {
 	constructor(dataRepo) {
 		this.CountryName = "";
-		this.dataRepo = dataRepo;
+		this.repo = dataRepo;
 	}
 
-	Test() {
-		this.dataRepo.getCountryList();
+	activate() {
+		return this.repo.getCountryList().then(CountryList => {
+			this.list = CountryList;
+		});
 	}
 }

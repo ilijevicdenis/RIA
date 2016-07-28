@@ -7,7 +7,7 @@
 export function configure(aurelia) {
 	
 	aurelia.use
-			.instance('Api', 'http://localhost:1001/kamp');
+			.instance('Api', 'http://localhost/kamp');
 			
 	aurelia.use
 		.standardConfiguration()

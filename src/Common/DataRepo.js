@@ -3,22 +3,23 @@ import {HttpClient, json} from "aurelia-fetch-client";
 
 @inject(HttpClient, 'Api')
 export class DataRepo {
+
 	constructor(httpClient, api) {
-		httpClient.configure(option => {
-			option.withDefaults({
-				mode: 'no-cors'S
-			});
+
+		httpClient.configure(config => {
+			config.useStandardConfiguration()
 		});
+
 		this.httpClient = httpClient;
 		this.api = api;
 	}
 
 	getCountryList() {
-		return this.httpClient.fetch(this.api + "/drzava")
-					.then(response => {
-						console.log(response);
-					});
+		var CountListPromise = new Promise( (resolve, reject) => {
+		 	this.httpClient.fetch(this.api + "/drzava")
+			.then(response => response.json())
+			.then(data => resolve(data));
+		});
+		return CountListPromise;
 	}
-
-
 }
