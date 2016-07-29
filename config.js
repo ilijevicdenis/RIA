@@ -7,7 +7,7 @@ System.config({
       "runtime",
       "optimisation.modules.system",
       "es7.decorators",
-      "es7.classProperties",
+      "es7.classProperties"
     ]
   },
   paths: {
@@ -18,12 +18,12 @@ System.config({
 
   map: {
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-rc.1.0.1",
-    "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-rc.1.0.1",
+    "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-rc.1.0.2",
     "aurelia-router": "npm:aurelia-router@1.0.0-rc.1.0.1",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "bootstrap": "github:twbs/bootstrap@3.3.6",
+    "bootstrap": "github:twbs/bootstrap@3.3.7",
     "core-js": "npm:core-js@1.2.7",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
@@ -43,7 +43,7 @@ System.config({
     "github:jspm/nodelibs-vm@0.1.0": {
       "vm-browserify": "npm:vm-browserify@0.0.4"
     },
-    "github:twbs/bootstrap@3.3.6": {
+    "github:twbs/bootstrap@3.3.7": {
       "jquery": "npm:jquery@2.2.4"
     },
     "npm:assert@1.4.1": {
