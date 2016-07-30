@@ -18,7 +18,11 @@
 		</div>
 		<div>
 			<label>City:</label>
-			<select></select>
+			<select value.bind="SelectedCity">
+				<option repeat.for="City of CityList" value.bind="City">
+					${City}
+				</option>
+			</select>
 		</div>
 		<div>
 			<label>Description</label>
@@ -29,4 +33,6 @@
 			<button>Cancel</button>
 		</div>
 	</form>
+	${SelectedCountry}
+	${SelectedCity}
 </template>

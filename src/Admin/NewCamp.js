@@ -1,17 +1,27 @@
-import {inject} from "aurelia-framework";
+import {inject, BindingEngine} from "aurelia-framework";
 import {DataRepo} from "Common/DataRepo";
 
 
-@inject(DataRepo)
+@inject(DataRepo, BindingEngine)
 export class NewCamp {
-	constructor(DataRepo) {
+	constructor(DataRepo, BindingEngine) {
+		this.bindingEngine = BindingEngine;
 		this.CampAddress = "";
 		this.NumberOfParcelas = "";
 		this.CampName = "";
 		this.CampDescription = "";
 		this.CountryList = [];
 		this.SelectedCountry = "";
+		this.SelectedCity = "";
 		this.dataRepo = DataRepo;
+		this.CityList = [];
+		this.Subscription = this.bindingEngine
+					.propertyObserver(this, "SelectedCountry")
+					.subscribe( (newvalue, oldvalue) => {
+						this.dataRepo.getCityListForCountry(newvalue).then(list => {
+							this.CityList = list;
+						});
+					});
 	}
 
 	activate() {
@@ -22,5 +32,9 @@ export class NewCamp {
 				}
 			})
 		]);
+	}
+
+	deactivate() {
+		this.Subscription.dispose();
 	}
 }

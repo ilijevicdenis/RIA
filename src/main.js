@@ -11,7 +11,6 @@ export function configure(aurelia) {
 			
 	aurelia.use
 		.standardConfiguration()
-		.developmentLogging();
-	
+		.developmentLogging();	
 	aurelia.start().then(a => a.setRoot("shell"));
 }

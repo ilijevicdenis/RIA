@@ -1,6 +1,6 @@
 <template>
 	<table>
-		<tr>
+		<thead>
 			<th>No.</th>
 			<th>First name</th>
 			<th>Last name</th>
@@ -10,8 +10,19 @@
 			<th>Departure date</th>
 			<th>Camp</th>
 			<th>Parcela</th>
-		</tr>
-		<tr>
-		</tr>
+		</thead>
+		<tbody>
+			<tr repeat.for="bookingEntry of bookingList">
+				<td>${bookingEntry.no}</td>
+				<td>${bookingEntry.fname}</td>
+				<td>${bookingEntry.lname}</td>
+				<td>${bookingEntry.email}</td>
+				<td>${bookingEntry.rsdate}</td>
+				<td>${bookingEntry.ardate}</td>
+				<td>${bookingEntry.dpdate}</td>
+				<td>${bookingEntry.camp}</td>
+				<td>${bookingEntry.parcela}</td>
+			</tr>
+		</tbody>
 	</table>
 </template>

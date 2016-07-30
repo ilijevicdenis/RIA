@@ -5,12 +5,11 @@
 			<input type="text" value.bind="CountryName">
 		</div>
 		<div>
-			<button click.trigger="Test()">Save</button>
+			<button click.trigger="test()">Save</button>
 			<button>Cancel</button>
 		</div>
 	</form>
-	<div repeat.for="item of list">
-		${item.drzava_id}
-		${item.naziv}
-	<div>
+	<div repeat.for="city of Citylist">
+		${city}
+	</div>
 </template>
