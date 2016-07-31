@@ -40,11 +40,35 @@ export class DataRepo {
 				.then(data => {
 					var CityList = [];
 					for(let item of data) {
-						CityList.push(item.grad_ime + " " + "(" + item.postanski_broj + ")");
+						CityList.push(item.grad_ime);
 					}
 					resolve(CityList);
 				});
 			});
 		return CiyListPromise;
+	}
+
+	getCampList(Country, City) {
+		var CampListPromise = new Promise( (resolve, reject) => {
+			let CampListUrl = this.api + "/search/camps/" + Country + "/" + City;
+			this.httpClient.fetch(CampListUrl)
+				.then(response => response.json())
+				.then(data => {
+					var CampList = [];
+					for (let camp of data) {
+						CampList.push(camp.kamp_ime);
+					}
+					resolve(CampList)
+				});
+		});
+		return CampListPromise;
+	}
+
+	saveCountry(CountryObject) {
+		let AddNewCountryUrl = this.api + "/drzava/add/";
+		this.httpClient.fetch(AddNewCountryUrl, {
+			method: "POST",
+			body: json(CountryObject) 
+		});
 	}
 }

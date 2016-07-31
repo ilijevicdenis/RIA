@@ -13,7 +13,7 @@
 	</div>
 	<div>
 		<label>Country:</label>
-		<select value.bind="CountryName">
+		<select value.bind="SelectedCountry">
 			<option repeat.for="country of CountryList" value.bind="country">
 				${country}
 			</option>
@@ -21,7 +21,19 @@
 	</div>
 	<div>
 		<label>City:<label>
-		<select></select>
+		<select value.bind="SelectedCity">
+			<option repeat.for="City of CityList" value.bind="City">
+				${City}
+			</option>
+		</select>
+	</div>
+	<div>
+		<label>Camp</label>
+		<select value.bind="SelectedCamp">
+			<option repeat.for="Camp of CampList" value.bind="Camp">
+				${Camp}
+			</option>
+		</select>
 	</div>
 	<div>
 		<label>Parcela Code:</label>

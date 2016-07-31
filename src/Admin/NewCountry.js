@@ -1,23 +1,19 @@
-import {DataRepo} from "Common/DataRepo";
 import {inject} from "aurelia-framework";
+import {DataRepo} from "Common/DataRepo"
 
-@inject(DataRepo, "Api")
+@inject(DataRepo)
 export class NewCountry {
-	constructor(dataRepo, api) {
+	constructor(dataRepo) {
 		this.CountryName = "";
 		this.repo = dataRepo;
-		this.api = api;
-		this.Citylist = [];
 	}
 
-	activate() {
-		return this.repo.getCityListForCountry("Croatia").then(list => { 
-			this.Citylist = list; 
-		});
+	Cancel() {
+		this.CountryName = "";
 	}
 
-	test() {
-		let CityListUrl = this.api + "/grad/list/" + this.CountryName;
-		console.log(CityListUrl);
+	Save() {
+		let NewCountry = [{"CountryName": this.CountryName}];
+		this.repo.saveCountry(NewCountry);
 	}
 }
