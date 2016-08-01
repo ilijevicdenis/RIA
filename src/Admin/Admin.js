@@ -23,6 +23,13 @@ export class Admin {
 				name: "New country",
 				title: "Add country",
 				nav: true
+			},
+			{
+				route: "Parcela",
+				moduleId: "Admin/Parcela/Parcela",
+				name: "Parcela",
+				title: "Parcela",
+				nav: true
 			}
 		]);
 	}

@@ -1,0 +1,40 @@
+<template>
+	<form>
+		<div>
+			<labal>Image URL: </labal>
+			<input type="text" value.bind="ImagePath" />
+		</div>
+		<div>
+			<label>Parcela code</label>
+			<input type="text" />
+		</div>
+		<div>
+			<label>Country:</label>
+			<select value.bind="SelectedCountry">
+				<option repeat.for="Country of CountryList" value.bind="Country">
+					${Country}
+				</option>
+			</select>
+		</div>
+		<div>
+			<label>City:</label>
+			<select value.bind="SelectedCity">
+				<option repeat.for="City of CityList" value.bind="City">
+					${City}
+				</option>
+			</select>
+		</div>
+		<div>
+			<label>Camp:</label>
+			<select value.bind="SelectedCamp">
+				<option repeat.for="Camp of CampList" value.bind="Camp">
+					${Camp}
+				</option>
+			</select>
+		</div>
+		<div>
+			<button click.trigger="Save()">Save</button>
+			<button click.trigger="ResetForm()"> Reset</button>
+		</div>
+	</form>
+</template>
