@@ -13,7 +13,7 @@ export class NewCountry {
 	}
 
 	Save() {
-		let NewCountry = [{"CountryName": this.CountryName}];
+		let NewCountry = {CountryName: this.CountryName};
 		this.repo.saveCountry(NewCountry);
 	}
 }

@@ -5,7 +5,7 @@ export class Parcela {
 		config.title = "Parcela";
 		config.map([
 			{
-				route: [""],
+				route: ["", "new"],
 				moduleId: "Admin/Parcela/NewParcela",
 				name: "add",
 				title: "New Parcela",
@@ -14,8 +14,15 @@ export class Parcela {
 			{
 				route: "image",
 				moduleId: "Admin/Parcela/ParcelaPicture",
-				name: "new picture",
+				name: "add_picture",
 				title: "New parcela picture",
+				nav: true
+			},
+			{
+				route: "availability",
+				moduleId: "Admin/Parcela/ParcelaAvailability",
+				name: "availability",
+				title: "Parcela availability",
 				nav: true
 			}
 		]);

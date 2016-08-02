@@ -34,6 +34,26 @@ export class NewCamp {
 		]);
 	}
 
+	ResetForm() {
+		this.CampAddress = "";
+		this.NumberOfParcelas = "";
+		this.CampName = "";
+		this.CampDescription = "";
+		this.SelectedCountry = "";
+		this.SelectedCity = "";
+
+	}
+
+	Save() {
+		let NewCampObject = {
+			Country: this.SelectedCountry,
+			City: this.SelectedCity,
+			CampName: this.CampName,
+			Address: this.CampAddress,
+			NoParcela: this.NumberOfParcelas,
+			CampDescription: this.CampDescription
+		}
+	}
 	deactivate() {
 		this.Subscription.dispose();
 	}

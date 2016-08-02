@@ -25,7 +25,7 @@ export class Admin {
 				nav: true
 			},
 			{
-				route: "Parcela",
+				route: "parcela",
 				moduleId: "Admin/Parcela/Parcela",
 				name: "Parcela",
 				title: "Parcela",

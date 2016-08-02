@@ -39,13 +39,13 @@ export class ParcelaPicture {
 	}
 
 	Save() {
-		let NewPictureObject = [{
-			"Country": this.SelectedCountry,
-			"City": this.SelectedCity,
-			"Camp": this.SelectedCamp,
-			"ParcelaCode": this.ParcelaCode,
-			"ImagePath": this.ImagePath
-		}];
+		let NewPictureObject = {
+			Country: this.SelectedCountry,
+			City: this.SelectedCity,
+			Camp: this.SelectedCamp,
+			ParcelaCode: this.ParcelaCode,
+			ImagePath: this.ImagePath
+		};
 
 		console.log(JSON.stringify(NewPictureObject));
 	}

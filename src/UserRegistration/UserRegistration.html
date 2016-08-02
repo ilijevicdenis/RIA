@@ -9,6 +9,21 @@
 			<input type="text" value.bind="LastName">
 		</div>
 		<div>
+			<select value.bind="SelectedCountry">
+				<option repeat.for="Country of CountryList" value.bind="Country">
+					${Country}
+				</option>
+			</select>
+		</div>
+		<div>
+			<label>City</label>
+			<select value.bind="SelectedCity">
+				<option repeat.for="City of CityList" value.bind="City">
+					${City}
+				</option>
+			</select>
+		</div>
+		<div>
 			<label>Street address: </label>
 			<input type="text" value.bind="StreetAddress">
 		</div>

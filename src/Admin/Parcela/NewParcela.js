@@ -62,16 +62,16 @@ export class NewParcela {
 	}	
 
 	SaveParcela() {
-		let NewParcelaObject = [{
-			"Country": this.SelectedCountry,
-			"City": this.SelectedCity,
-			"CampName": this.CampName,
-			"ParcelaCode": this.ParcelaCode,
-			"Electricity": this.ElectricityOption,
-			"Water": this.WaterOption,
-			"PricePerNight": this.PricePerNight,
-			"Description": this.Description 
-		}];
+		let NewParcelaObject = {
+			Country: this.SelectedCountry,
+			City: this.SelectedCity,
+			CampName: this.CampName,
+			ParcelaCode: this.ParcelaCode,
+			Electricity: this.ElectricityOption,
+			Water: this.WaterOption,
+			PricePerNight: this.PricePerNight,
+			Description: this.Description 
+		};
 		console.log(JSON.stringify(NewParcelaObject));
 	}
 

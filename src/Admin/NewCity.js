@@ -8,6 +8,7 @@ export class NewCity {
 		this.CountryName = "";
 		this.CountryList = [];
 		this.CityName = "";
+		this.ZipCode = "";
 	}
 
 	activate() {
@@ -19,7 +20,11 @@ export class NewCity {
 	}
 
 	saveCity() {
-		let NewCity = [{CityName: this.CityName, Country: this.CountryName}];
+		let NewCity = {
+			CityName: this.CityName,
+			ZipCode: this.ZipCode, 
+			Country: this.CountryName
+		};
 		console.log(JSON.stringify(NewCity));
 	}
 

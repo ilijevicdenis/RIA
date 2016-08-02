@@ -15,12 +15,12 @@ export class DataRepo {
 	}
 
 	getCountryList() {
-		var CountListPromise = new Promise( (resolve, reject) => {
+		var CountryListPromise = new Promise( (resolve, reject) => {
 		 	this.httpClient.fetch(this.api + "/drzava")
 			.then(response => response.json())
 			.then(data => resolve(data));
 		});
-		return CountListPromise;
+		return CountryListPromise;
 	}
 
 	getBookingList() {

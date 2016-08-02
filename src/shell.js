@@ -12,7 +12,8 @@ export class Shell {
 
 	configureRouter(config, router) {
 		this.router = router;
-		config.title = "RIA rentals Inc."
+		config.title = "RIA rentals Inc.";
+		config.options.pushState = true;
 		config.map([
 			{
 				route: "",
@@ -27,13 +28,6 @@ export class Shell {
 				nav: true
 			},
 			{
-				route: "parcela",
-				moduleId: "Parcela/Parcela",
-				name: "parcela",
-				title: "Parcela",
-				nav: true
-			},
-			{
 				route: "booking",
 				moduleId: "Booking/Booking",
 				name: "booking",
@@ -45,6 +39,13 @@ export class Shell {
 				moduleId: "Admin/admin",
 				name: "admin",
 				title: "Admin",
+				nav: true
+			},
+			{
+				route: "login",
+				moduleId: "Login/UserLogin",
+				name: "User login",
+				title: "User login",
 				nav: true
 			}
 		]);
