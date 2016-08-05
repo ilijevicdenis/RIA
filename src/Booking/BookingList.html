@@ -1,7 +1,6 @@
 <template>
 	<table>
 		<thead>
-			<th>No.</th>
 			<th>First name</th>
 			<th>Last name</th>
 			<th>Email</th>
@@ -13,10 +12,10 @@
 			<th>Arrival date</th>
 			<th>Departure date</th>
 			<th></th>
+			<th></th>		
 		</thead>
 		<tbody>
 			<tr repeat.for="bookingEntry of bookingList">
-				<td>${bookingEntry.no}</td>
 				<td>${bookingEntry.fname}</td>
 				<td>${bookingEntry.lname}</td>
 				<td>${bookingEntry.email}</td>
@@ -28,7 +27,10 @@
 				<td>${bookingEntry.ardate}</td>
 				<td>${bookingEntry.dpdate}</td>
 				<td>
-					<button click.delegate="editReservation(bookEntry)">Edit reservation</button>
+					<button click.delegate="updateReservation(bookingEntry)">Update reservation</button>	
+				</td>
+				<td>
+					<button click.delegate="deleteReservation(bookingEntry)">Delete reservation</button>
 				</td>
 			</tr>
 		</tbody>

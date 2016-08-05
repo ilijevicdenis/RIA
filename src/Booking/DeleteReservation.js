@@ -2,7 +2,7 @@ import {DialogController} from "aurelia-dialog";
 import {inject} from "aurelia-framework";
 
 @inject(DialogController)
-export class EditReservation {
+export class DeleteReservation {
 	constructor(DialogController) {
 		this.dialogController = DialogController;
 	}
@@ -11,8 +11,7 @@ export class EditReservation {
 		this.bookEntry = bookEntry;
 	}
 
-
-	Save() {
+	Delete() {
 		this.dialogController.ok();
 	}
 
