@@ -68,23 +68,23 @@ export class BookingList {
 			else {
 				console.log(JSON.stringify(this.generateJSON("DELETE")));
 			}
-		})
+		});
 	}
 
 	generateJSON(action) {
 		let ReservationObject = {
-		id: this.bookEntry.id,
-		fname: this.bookEntry.fname,
-		lname: this.bookEntry.lname,
-		email: this.bookEntry.email,
-		pnumber: this.bookEntry.pnumber,
-		country: this.bookEntry.country,
-		city: this.bookEntry.city,
-		camp: this.bookEntry.camp,
-		parcelaCode: this.bookEntry.parcelaCode,
-		ardate: this.bookEntry.ardate,
-		dpdate: this.bookEntry.dpdate,
-		action: action
+			id: this.bookEntry.id,
+			fname: this.bookEntry.fname,
+			lname: this.bookEntry.lname,
+			email: this.bookEntry.email,
+			pnumber: this.bookEntry.pnumber,
+			country: this.bookEntry.country,
+			city: this.bookEntry.city,
+			camp: this.bookEntry.camp,
+			parcelaCode: this.bookEntry.parcelaCode,
+			ardate: this.bookEntry.ardate,
+			dpdate: this.bookEntry.dpdate,
+			action: action
 		}
 
 		return ReservationObject;
