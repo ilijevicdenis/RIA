@@ -1,6 +1,6 @@
 /*
 	Main class for front end navigation. 
-	Configures routes for admin and reguluras users
+	Configures routes for admin and regulur users
 	Author: Denis Ilijevic
 */
 
@@ -16,15 +16,15 @@ export class Shell {
 		//config.options.pushState = true;
 		config.map([
 			{
-				route: "",
+				route: ["", "aboutus"],
 				moduleId: "static/AboutUs",
 				nav: false
 			},
-			{	
-				route:  "register", 
-				moduleId: "UserRegistration/UserRegistration", 
-				name: "User registration", 
-				title: "User Registration", 
+			{
+				route: "search",
+				moduleId: "Search/Search",
+				title: "Search",
+				name: "search",
 				nav: true
 			},
 			{
@@ -39,6 +39,13 @@ export class Shell {
 				moduleId: "Admin/admin",
 				name: "admin",
 				title: "Admin",
+				nav: true
+			},
+						{	
+				route:  "register", 
+				moduleId: "UserRegistration/UserRegistration", 
+				name: "User registration", 
+				title: "User Registration", 
 				nav: true
 			},
 			{

@@ -71,4 +71,15 @@ export class DataRepo {
 			body: json(CountryObject) 
 		});
 	}
+
+	getAvailableCampingList() {
+		var CampingListPromise = new Promise( (resolve, reject) => {
+			let searchListUrl = this.api + "/search";
+			this.httpClient.fetch(searchListUrl)
+			.then(response => response.json())
+			.then(data => resolve(data))
+		});
+
+		return CampingListPromise;
+	}
 }

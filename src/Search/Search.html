@@ -1,0 +1,50 @@
+<template>
+	<form>
+		<label>Search by country: </label>
+		<select value.bind="SelectedCountry">
+			<option repeat.for="country of CountryList" value.bind="country">
+				${country}
+			</option>
+		</select>
+		<button click.trigger="filterByCountry()">Search</button>
+		<button click.trigger="resetFilter()">Reset filter</button>
+	</form>
+	<article repeat.for="camp of searchList">
+		<section>
+			<div>
+				<label>Camp name:</label>
+				<label>${camp.Camp}</label>
+			</div>
+			<div>
+				<label>Location:</label>
+				<label>${camp.Country}, ${camp.City}, ${camp.Address}</label>
+			</div>
+			<div>
+				${camp.Description}
+			</div>
+			<div>
+				<table>
+					<thead>
+						<th>Parcela code</th>
+						<th>Electricity</th>
+						<th>Water</th>
+						<th>Price per night</th>
+						<th>Description</th>
+						<th></th>
+					</thead>
+					<tbody>
+						<tr repeat.for="parcela of camp.Parcele">
+							<td>${parcela.ParcelaCode}</td>
+							<td>${parcela.Electricity}</td>
+							<td>${parcela.Water}</td>
+							<td>${parcela.PricePerNight}</td>
+							<td>${parcela.ParcelaDescription}</td>
+							<td repeat.for="pic of parcela.ParcelaPictures">
+								${pic.ParcelaPictureUrl}
+							</td>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</article>
+</template>
