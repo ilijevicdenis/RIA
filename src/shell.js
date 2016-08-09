@@ -3,9 +3,9 @@
 	Configures routes for admin and regulur users
 	Author: Denis Ilijevic
 */
+import {AuthenticateStep} from "aurelia-authentication";
 
 export class Shell {
-
 	constructor() {
 
 	}
@@ -13,6 +13,7 @@ export class Shell {
 	configureRouter(config, router) {
 		this.router = router;
 		config.title = "RIA rentals Inc.";
+		config.addPipelineStep("authorize", AuthenticateStep)
 		//config.options.pushState = true;
 		config.map([
 			{
@@ -24,7 +25,7 @@ export class Shell {
 				route: "search",
 				moduleId: "Search/Search",
 				title: "Search",
-				name: "search",
+				//name: "search",
 				nav: true
 			},
 			{
@@ -39,10 +40,11 @@ export class Shell {
 				moduleId: "Admin/admin",
 				name: "admin",
 				title: "Admin",
+				//auth: true,
 				nav: true
 			},
-						{	
-				route:  "register", 
+			{	
+				route: "register", 
 				moduleId: "UserRegistration/UserRegistration", 
 				name: "User registration", 
 				title: "User Registration", 
