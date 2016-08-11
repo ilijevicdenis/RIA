@@ -87,7 +87,7 @@ export class DataRepo {
 		let AddNewPictureUrl = this.api + "/picture/add";
 		this.httpClient.fetch(AddNewPictureUrl, {
 			method: "POST",
-			body: JSON(PictureObject);
+			body: JSON(PictureObject)
 		});
 	}
 
@@ -95,7 +95,7 @@ export class DataRepo {
 		let addNewCityObjectUrl = this.api + "/grad/add";
 		this.httpClient.fetch(addNewCityObjectUrl, {
 			method: "POST",
-			body: JSON(CityObject);
+			body: JSON(CityObject)
 		});
 	}
 
@@ -111,7 +111,7 @@ export class DataRepo {
 		let addParcelaObjectUrl = this.api + "/parcela/add";
 		this.httpClient.fetch(addParcelaObjectUrl, {
 			method: "POST",
-			body: JSON(ParcelaObject); 
+			body: JSON(ParcelaObject)
 		});
 	}
 
@@ -119,7 +119,7 @@ export class DataRepo {
 		let addUserUrl = this.api + "/user/register";
 		this.httpClient.fetch(addUserUrl, {
 			method: "POST",
-			body: JSON(UserObject);
+			body: JSON(UserObject)
 		});
 	}
 
@@ -127,7 +127,7 @@ export class DataRepo {
 		let parcelaAvailabilityUrl = this.api + "/parcela/availability/";
 		this.httpClient.fetch(parcelaAvailabilityUrl, {
 			method: "POST",
-			body: JSON(ParcelaAvailability);
-		})
+			body: JSON(ParcelaAvailability)
+		});
 	}
 }

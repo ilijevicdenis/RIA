@@ -16,7 +16,7 @@ export class Booking {
 				moduleId: "Booking/BookingList",
 				name: "Booking list",
 				title: "Booking list",
-				auth: true,
+				//auth: true,
 				nav: true
 			}		
 		]);

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<ul repeat.for="route of router.navigation | authFilter: authenticated">
+		<ul repeat.for="route of router.navigation"> <!-- | authFilter: authenticated"> -->
 			<a href.bind="route.href">
 				${route.title}
 			</a>
