@@ -67,6 +67,7 @@ export class NewParcela {
 			AvailabilityStatus: this.AvailabilityStatus,
 			AvailabilityDescription: this.AvailabilityDescription,
 		};
+		this.Repo.saveParcelaAvailability(ParcelaAvailabilityObject);
 	}
 
 

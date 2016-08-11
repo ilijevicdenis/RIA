@@ -47,7 +47,7 @@ export class ParcelaPicture {
 			ImagePath: this.ImagePath
 		};
 
-		console.log(JSON.stringify(NewPictureObject));
+		this.DataRepo.savePicture(NewPictureObject);
 	}
 
 	activate() {

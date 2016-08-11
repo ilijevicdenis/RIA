@@ -40,7 +40,7 @@ export class UserRegistration {
 			Password: this.Password
 		};
 
-		console.log(JSON.stringify(NewuserObject));
+		this.Repo.saveUser(NewuserObject);
 	}
 
 	Cancel() {

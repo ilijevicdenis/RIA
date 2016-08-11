@@ -82,4 +82,52 @@ export class DataRepo {
 
 		return CampingListPromise;
 	}
+
+	savePicture(PictureObject) {
+		let AddNewPictureUrl = this.api + "/picture/add";
+		this.httpClient.fetch(AddNewPictureUrl, {
+			method: "POST",
+			body: JSON(PictureObject);
+		});
+	}
+
+	saveCity(CityObject) {
+		let addNewCityObjectUrl = this.api + "/grad/add";
+		this.httpClient.fetch(addNewCityObjectUrl, {
+			method: "POST",
+			body: JSON(CityObject);
+		});
+	}
+
+	saveCamp(CampObject) {
+			let addNewCampObjectUrl = this.api + "/add"
+			this.httpClient.fetch(addNewCampObjectUrl, {
+				method: "POST",
+				body: JSON(CampObject) 
+			});
+		}
+
+	saveParcela(ParcelaObject) {
+		let addParcelaObjectUrl = this.api + "/parcela/add";
+		this.httpClient.fetch(addParcelaObjectUrl, {
+			method: "POST",
+			body: JSON(ParcelaObject); 
+		});
+	}
+
+	saveUser(UserObject) {
+		let addUserUrl = this.api + "/user/register";
+		this.httpClient.fetch(addUserUrl, {
+			method: "POST",
+			body: JSON(UserObject);
+		});
+	}
+
+	saveParcelaAvailability(ParcelaAvailability) {
+		let parcelaAvailabilityUrl = this.api + "/parcela/availability/";
+		this.httpClient.fetch(parcelaAvailabilityUrl, {
+			method: "POST",
+			body: JSON(ParcelaAvailability);
+		})
+	}
 }

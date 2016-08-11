@@ -25,7 +25,7 @@ export class NewCity {
 			ZipCode: this.ZipCode, 
 			Country: this.CountryName
 		};
-		console.log(JSON.stringify(NewCity));
+		this.dataRepo.saveCity(NewCity);
 	}
 
 	Cancel() {

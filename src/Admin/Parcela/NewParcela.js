@@ -72,7 +72,7 @@ export class NewParcela {
 			PricePerNight: this.PricePerNight,
 			Description: this.Description 
 		};
-		console.log(JSON.stringify(NewParcelaObject));
+		this.Repo.saveParcela(NewParcelaObject);
 	}
 
 	deactivate() {
