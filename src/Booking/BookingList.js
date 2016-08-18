@@ -52,7 +52,7 @@ export class BookingList {
 					this.restoreData();
 				}
 				else {
-					console.log(JSON.stringify(this.generateJSON("UPDATE")));
+					this.dataRepo.updateReservation(generateJSON());
 				}
 			});
 
@@ -66,7 +66,7 @@ export class BookingList {
 				this.restoreData();
 			}
 			else {
-				console.log(JSON.stringify(this.generateJSON("DELETE")));
+				this.dataRepo.deleteReservation(generateJSON());
 			}
 		});
 	}
