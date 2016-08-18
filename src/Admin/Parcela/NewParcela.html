@@ -1,0 +1,62 @@
+<template>
+	<form>
+		<div>
+			<label>Country:</label>
+			<select value.bind="SelectedCountry">
+				<option repeat.for="Country of CountryList" value.bind="Country">
+					${Country}
+				</option>
+			</select>
+		</div>
+		<div>
+			<label>City:</label>
+			<select value.bind="SelectedCity">
+				<option repeat.for="City of CityList" value.bind="City">
+					${City}
+				</option>
+			</select>
+		</div>
+		<div>
+			<label>Camp:</label>
+			<select value.bind="SelectedCamp">
+				<option repeat.for="Camp of CampList" value.bind="Camp">
+					${Camp}
+				</option>
+			</select>
+		</div>
+		<div>
+			<labe>Price per night</labe>
+			<input type="text" value.bind="PricePerNight" />
+		</div>
+		<div>
+			<label>Electricity availability:</label>
+			<label repeat.for="option of weOption">
+				<input type="radio" value.bind="option" name="Electricity" 
+					checked.bind="$parent.ElectricityOption" >
+					${option}
+				</input>
+			</label>
+		</div>
+		<div>
+			<label>Water availability</label>
+			<label repeat.for="option of weOption">
+				<input type="radio" value.bind="option" name="Water"
+					checked.bind="$parent.WaterOption">
+					${option}
+				</input>
+			</label>
+		</div>
+		<div>
+			<label>Parcela identifier:</label>
+			<input type="text" value.bind="ParcelaCode" />
+		</div>
+		<div>
+			<label>Description:</label>
+			<textarea value.bind="Description"></textarea>
+		</div>
+		<div>
+			<button click.trigger="Save()">Save</button>
+			<button click.trigger="ResetForm()">Reset form</button>
+		</div>
+	</form>
+</template>
