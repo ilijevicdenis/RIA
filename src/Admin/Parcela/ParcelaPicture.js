@@ -9,11 +9,12 @@ export class ParcelaPicture {
 		this.CountryList = [];
 		this.CityList = [];
 		this.CampList = [];
+		this.ParcelaIds = [];
+		this.ParcelaId = "";
 		this.SelectedCountry = "";
 		this.SelectedCity = "";
 		this.SelectedCamp = "";
 		this.ImagePath = "";
-		this.ParcelaCode = "";
 
 	this.UpdateCityList = this.bindEngine.propertyObserver(this, "SelectedCountry")
 								  .subscribe( newvalue => {
@@ -28,6 +29,19 @@ export class ParcelaPicture {
 											this.CampList = list;
 										})
 									});
+
+			this.UpdateId = this.bindEngine.propertyObserver(this, "SelectedCamp")
+			.subscribe(newvalue => {
+				this.repo.getIds(this.SelectedCountry, this.SelectedCity, newvalue)
+				.then(idlist => {
+					this.ParcelaIds = [];
+					if(this.SelectedCity != "" && this.SelectedCamp != "") {
+						this.ParcelaIds = [];
+						for(let item of idlist)
+							this.ParcelaIds.push(item.parcelaId);
+					}
+				})
+			});
 	}
 
 	ResetForm() {
@@ -40,14 +54,11 @@ export class ParcelaPicture {
 
 	Save() {
 		let NewPictureObject = {
-			Country: this.SelectedCountry,
-			City: this.SelectedCity,
-			Camp: this.SelectedCamp,
-			ParcelaCode: this.ParcelaCode,
+			ParcelaID: this.ParcelaId,
 			ImagePath: this.ImagePath
 		};
-
-		this.DataRepo.savePicture(NewPictureObject);
+		console.log(JSON.stringify(NewPictureObject));
+		this.repo.savePicture(NewPictureObject);
 	}
 
 	activate() {

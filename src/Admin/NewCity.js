@@ -21,10 +21,10 @@ export class NewCity {
 
 	saveCity() {
 		let NewCity = {
-			CityName: this.CityName,
+			City: this.CityName,
 			ZipCode: this.ZipCode, 
 			Country: this.CountryName
-		};
+		}
 		this.dataRepo.saveCity(NewCity);
 	}
 

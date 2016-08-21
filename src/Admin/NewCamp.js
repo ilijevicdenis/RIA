@@ -53,6 +53,7 @@ export class NewCamp {
 			NoParcela: this.NumberOfParcelas,
 			CampDescription: this.CampDescription
 		}
+		console.log(JSON.stringify(NewCampObject));
 		this.dataRepo.saveCamp(NewCampObject);
 	}
 	deactivate() {

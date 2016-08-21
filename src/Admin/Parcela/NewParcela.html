@@ -18,7 +18,7 @@
 		</div>
 		<div>
 			<label>Camp:</label>
-			<select value.bind="SelectedCamp">
+			<select value.bind="CampName">
 				<option repeat.for="Camp of CampList" value.bind="Camp">
 					${Camp}
 				</option>
@@ -47,7 +47,7 @@
 			</label>
 		</div>
 		<div>
-			<label>Parcela identifier:</label>
+			<label>Parcela Code:</label>
 			<input type="text" value.bind="ParcelaCode" />
 		</div>
 		<div>
@@ -55,7 +55,7 @@
 			<textarea value.bind="Description"></textarea>
 		</div>
 		<div>
-			<button click.trigger="Save()">Save</button>
+			<button click.trigger="SaveParcela()">Save</button>
 			<button click.trigger="ResetForm()">Reset form</button>
 		</div>
 	</form>

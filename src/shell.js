@@ -25,7 +25,7 @@ export class Shell {
 				route: "search",
 				moduleId: "Search/Search",
 				title: "Search",
-				//name: "search",
+				name: "search",
 				nav: true
 			},
 			{

@@ -13,6 +13,7 @@ export class UserRegistration {
 		this.FirstName = "";
 		this.LastName = "";
 		this.StreetAddress = "";
+		this.ContactNumber = "";
 		this.Email = ""
 		this.Password = "";
 		this.CityListUpdater = this.bindEngine.propertyObserver(this, "SelectedCountry")
@@ -31,15 +32,18 @@ export class UserRegistration {
 
 	Register() {
 		let NewuserObject = {
+			TipOsobe: "Korisnik",
 			Country: this.SelectedCountry,
 			City: this.SelectedCity,
 			FirstName: this.FirstName,
 			LastName: this.LastName,
 			Address: this.StreetAddress,
 			Email: this.Email,
-			Password: this.Password
+			Password: this.Password,
+			ContactNumber: this.ContactNumber
 		};
 
+		console.log(JSON.stringify(NewuserObject));
 		this.Repo.saveUser(NewuserObject);
 	}
 

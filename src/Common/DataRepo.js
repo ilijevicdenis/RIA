@@ -84,26 +84,26 @@ export class DataRepo {
 	}
 
 	savePicture(PictureObject) {
-		let AddNewPictureUrl = this.api + "/picture/add";
+		let AddNewPictureUrl = this.api + "/parcela/picture";
 		this.httpClient.fetch(AddNewPictureUrl, {
 			method: "POST",
-			body: JSON(PictureObject)
+			body: json(PictureObject)
 		});
 	}
 
 	saveCity(CityObject) {
-		let addNewCityObjectUrl = this.api + "/grad/add";
+		let addNewCityObjectUrl = this.api + "/grad/add/";
 		this.httpClient.fetch(addNewCityObjectUrl, {
 			method: "POST",
-			body: JSON(CityObject)
+			body: json(CityObject)
 		});
 	}
 
 	saveCamp(CampObject) {
-			let addNewCampObjectUrl = this.api + "/add"
+			let addNewCampObjectUrl = this.api + "/kamp/add"
 			this.httpClient.fetch(addNewCampObjectUrl, {
 				method: "POST",
-				body: JSON(CampObject) 
+				body: json(CampObject) 
 			});
 		}
 
@@ -111,7 +111,7 @@ export class DataRepo {
 		let addParcelaObjectUrl = this.api + "/parcela/add";
 		this.httpClient.fetch(addParcelaObjectUrl, {
 			method: "POST",
-			body: JSON(ParcelaObject)
+			body: json(ParcelaObject)
 		});
 	}
 
@@ -119,15 +119,15 @@ export class DataRepo {
 		let addUserUrl = this.api + "/user/register";
 		this.httpClient.fetch(addUserUrl, {
 			method: "POST",
-			body: JSON(UserObject)
+			body: json(UserObject)
 		});
 	}
 
 	saveParcelaAvailability(ParcelaAvailability) {
-		let parcelaAvailabilityUrl = this.api + "/parcela/availability/";
+		let parcelaAvailabilityUrl = this.api + "/parcela/availability";
 		this.httpClient.fetch(parcelaAvailabilityUrl, {
 			method: "POST",
-			body: JSON(ParcelaAvailability)
+			body: json(ParcelaAvailability)
 		});
 	}
 
@@ -135,7 +135,7 @@ export class DataRepo {
 		let updateReservationUrl = this.api + "/booking/list";
 		this.httpClient.fetch(updateReservationUrl, {
 			method: "PUT",
-			body: JSON(ReservationObject);
+			body: json(ReservationObject)
 		});
 	}
 
@@ -143,7 +143,17 @@ export class DataRepo {
 		let deleteReservationUrl = this.api + "/booking/list";
 		this.httpClient.fetch(deleteReservationUrl, {
 			method: "DELETE",
-			body: JSON(ReservationObject)
+			body: json(ReservationObject)
 		});
+	}
+
+		getIds(Country, City, Camp) {
+		var ParcelaIdPromise = new Promise( (resolve, reject) => {
+			let CityListUrl = this.api + "/parcela/list/"  + Country + "/" + City + "/" + Camp;
+			this.httpClient.fetch(CityListUrl)
+				.then(response => response.json())
+				.then(data => resolve(data))
+			});
+		return ParcelaIdPromise;
 	}
 }

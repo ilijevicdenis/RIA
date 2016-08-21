@@ -17,12 +17,10 @@ export class BookingList {
 
 	activate() {
 		return this.dataRepo.getBookingList().then(blist => {
-			var id = 0;
 			for(let item of blist) {
-				let tempItem = new BookEntryTemplate(id, item.fname, item.lname, 
-					 item.email, item.pnumber, item.country, item.city, item.camp, item.parcelaCode, 
-					 item.parcelaId, item.rsdate, item.ardate, item.dpdate, false);
-				id++;
+				let tempItem = new BookEntryTemplate(item.id, item.fname, item.lname, 
+					 item.email, item.pnumber, item.country, item.city, item.camp, item.parcelaCode,
+					 item.parcelaId, item.ardate, item.dpdate, false);
 				this.bookingList.push(tempItem);
 			}
 		});
@@ -52,7 +50,7 @@ export class BookingList {
 					this.restoreData();
 				}
 				else {
-					this.dataRepo.updateReservation(generateJSON());
+					this.dataRepo.updateReservation(this.generateJSON());
 				}
 			});
 
@@ -66,14 +64,14 @@ export class BookingList {
 				this.restoreData();
 			}
 			else {
-				this.dataRepo.deleteReservation(generateJSON());
+				console.log(JSON.stringify(this.generateJSON()));
+				this.dataRepo.deleteReservation(this.generateJSON());
 			}
 		});
 	}
 
 	generateJSON() {
 		let ReservationObject = {
-			id: this.bookEntry.id,
 			fname: this.bookEntry.fname,
 			lname: this.bookEntry.lname,
 			email: this.bookEntry.email,
@@ -81,12 +79,10 @@ export class BookingList {
 			country: this.bookEntry.country,
 			city: this.bookEntry.city,
 			camp: this.bookEntry.camp,
-			parcelaCode: this.bookEntry.parcelaCode,
-			parcelaId: this.parcelaId,
-			rsdate: this.bookEntry.rsdate,
+			parcelaId: this.bookEntry.parcelaId,
 			ardate: this.bookEntry.ardate,
-			dpdate: this.bookEntry.dpdate,
-		}
+			dpdate: this.bookEntry.dpdate
+		};
 
 		return ReservationObject;
 	}

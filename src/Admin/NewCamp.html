@@ -29,7 +29,11 @@
 			<textarea value.bind="CampDescription"></textarea>
 		</div>
 		<div>
-			<button>Save</button>
+			<label>Number of parcelas:</label>
+			<textarea value.bind="NumberOfParcelas"></textarea>
+		</div>
+		<div>
+			<button click.trigger="Save()">Save</button>
 			<button click.trigger="ResetForm()">Cancel</button>
 		</div>
 	</form>

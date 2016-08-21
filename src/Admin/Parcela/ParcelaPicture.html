@@ -5,10 +5,6 @@
 			<input type="text" value.bind="ImagePath" />
 		</div>
 		<div>
-			<label>Parcela code</label>
-			<input type="text" />
-		</div>
-		<div>
 			<label>Country:</label>
 			<select value.bind="SelectedCountry">
 				<option repeat.for="Country of CountryList" value.bind="Country">
@@ -29,6 +25,14 @@
 			<select value.bind="SelectedCamp">
 				<option repeat.for="Camp of CampList" value.bind="Camp">
 					${Camp}
+				</option>
+			</select>
+		</div>
+				<div>
+			<label>ParcelaId:</label>
+			<select value.bind="ParcelaId">
+				<option repeat.for="id of ParcelaIds" value.bind="id">
+					${id}
 				</option>
 			</select>
 		</div>

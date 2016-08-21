@@ -19,7 +19,7 @@
 		<div>
 			<label>Camp:</label>
 			<select value.bind="SelectedCamp">
-				<option repeat.for="Camp of CampList" value.bind="SelectedCamp">
+				<option repeat.for="Camp of CampList" value.bind="Camp">
 					${Camp}
 				</option>
 			</select>
@@ -30,7 +30,7 @@
 		</div>
 		<div>
 			<label>Available until:</label>
-			<input type="date" value.bind="AvaibleUntil">
+			<input type="date" value.bind="AvailableUntil" />
 		</div>
 		<div>
 			<label>Availability status:</label>
@@ -45,8 +45,12 @@
 			<textarea value.bind="AvailabiliyDescription"></textarea>
 		</div>
 		<div>
-			<label>Parcela code:</label>
-			<input type="text" value.bind="ParcelaCode">
+			<label>Parcela id:</label>
+			<select value.bind="ParcelaId">
+				<option repeat.for="Id of ParcelaIds" value.bind="Id">
+					${Id}
+				</option>
+			</select>
 		</div>
 		<div>
 			<button click.trigger="Save()">Save</button>

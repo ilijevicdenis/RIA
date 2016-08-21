@@ -15,7 +15,8 @@ export function configure(aurelia) {
 	aurelia.use
 		.standardConfiguration()
 		.developmentLogging()
-		.plugin('aurelia-dialog')
+		.plugin('aurelia-dialog');
+		/*
 		.plugin("aurelia-api", configure => {
 			configure
 				.registerEndpoint('public-api', 'http://localhost/kamp/user/login')
@@ -29,7 +30,7 @@ export function configure(aurelia) {
 		})
 		.plugin("aurelia-authentication", baseconfig => {
 			baseconfig.configure(authConfig);
-			 /*baseconfig.client.client
+			 baseconfig.client.client
      			 .withBaseUrl('http://localhost/kamp/user/login')
       			 .withDefaults({
         			credentials: 'same-origin',
@@ -42,7 +43,7 @@ export function configure(aurelia) {
         			response(response) {
           				return response;
         			}
-      			});*/
-		});
+      			}); 
+		}); */
 	aurelia.start().then(a => a.setRoot("shell"));
 }
