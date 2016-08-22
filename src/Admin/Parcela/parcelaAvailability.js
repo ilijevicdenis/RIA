@@ -89,6 +89,7 @@ export class NewParcela {
 		};
 		console.log(JSON.stringify(ParcelaAvailabilityObject));
 		this.Repo.saveParcelaAvailability(ParcelaAvailabilityObject);
+		this.ResetForm();
 	}
 
 

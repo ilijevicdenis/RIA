@@ -155,7 +155,7 @@ export class DataRepo {
 		});
 	}
 
-		getIds(Country, City, Camp) {
+	getIds(Country, City, Camp) {
 		var ParcelaIdPromise = new Promise( (resolve, reject) => {
 			let CityListUrl = this.api + "/parcela/list/"  + Country + "/" + City + "/" + Camp;
 			this.httpClient.fetch(CityListUrl)
@@ -163,5 +163,16 @@ export class DataRepo {
 				.then(data => resolve(data))
 			});
 		return ParcelaIdPromise;
+	}
+
+	getPayingList() {
+		var PayingListPromise = new Promise ( (resolve, reject) => {
+			let PayingListUrl = this.api + "/placanje";
+			console.log(PayingListUrl);
+			this.httpClient.fetch(PayingListUrl)
+			.then(response => response.json())
+			.then(data => resolve(data))
+		});
+		return PayingListPromise;
 	}
 }

@@ -68,6 +68,7 @@ export class ParcelaPicture {
 		};
 		console.log(JSON.stringify(NewPictureObject));
 		this.repo.savePicture(NewPictureObject);
+		this.ResetForm();
 	}
 
 	activate() {

@@ -75,6 +75,7 @@ export class NewParcela {
 
 		console.log(JSON.stringify(NewParcelaObject));
 		this.Repo.saveParcela(NewParcelaObject);
+		this.ResetForm();
 	}
 
 	deactivate() {

@@ -1,6 +1,6 @@
 export class BookEntryTemplate {
 	constructor(id, fname, lname, email, pnumber, country, 
-				city, campName, campID, parcelaCode, parcelaId, ardate, dpdate, isSelected) {
+				city, campName, campID, parcelaCode, parcelaId, ardate, dpdate, userLeft, isSelected) {
 		this.id = id; //booking id
 		this.fname = fname;
 		this.lname =lname;
@@ -14,6 +14,7 @@ export class BookEntryTemplate {
 		this.parcelaId = parcelaId;
 		this.ardate = ardate;
 		this.dpdate = dpdate;
+		this.userLeft = userLeft;
 		this.isSelected = isSelected;
 	}
 }

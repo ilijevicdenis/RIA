@@ -5,6 +5,7 @@ import {inject} from "aurelia-framework";
 export class EditReservation {
 	constructor(DialogController) {
 		this.dialogController = DialogController;
+		this.LeftOptions = ["No", "Yes"];
 	}
 
 	activate(bookEntry) {

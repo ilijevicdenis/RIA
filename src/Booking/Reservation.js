@@ -74,6 +74,16 @@ export class Reservation {
 
 		console.log(JSON.stringify(NewReservationObject));
 		this.dataRepo.saveReservation(NewReservationObject);
+		this.Cancel();
+	}
+
+	Cancel() {
+		this.ReservationEmail = "";
+		this.SelectedCountry = "Croatia";
+		this.SelectedCamp = "";
+		this.ArrivalDate = "";
+		this.DepartureDate = "";
+		this.ParcelaId = "";
 	}
 
 	deactivate() {

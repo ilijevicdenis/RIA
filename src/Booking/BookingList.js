@@ -21,7 +21,7 @@ export class BookingList {
 				let tempItem = new BookEntryTemplate(item.id, item.fname, item.lname, 
 					 item.email, item.pnumber, item.country, item.city, item.campName,
 					 item.campID, item.parcelaCode,
-					 item.parcelaId, item.ardate, item.dpdate, false);
+					 item.parcelaId, item.ardate, item.dpdate, "Ne", false);
 				this.bookingList.push(tempItem);
 			}
 		});
@@ -73,6 +73,8 @@ export class BookingList {
 	}
 
 	generateJSON() {
+
+		let hasLefttemp = this.bookEntry.hasLeft == "Yes" ? "Da" : "Ne";
 		let ReservationObject = {
 			fname: this.bookEntry.fname,
 			lname: this.bookEntry.lname,
@@ -84,6 +86,7 @@ export class BookingList {
 			parcelaId: this.bookEntry.parcelaId,
 			ardate: this.bookEntry.ardate,
 			dpdate: this.bookEntry.dpdate,
+			userLeft: hasLefttemp,
 			gostovanjeId: this.bookEntry.id
 		};
 

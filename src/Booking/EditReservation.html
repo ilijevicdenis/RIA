@@ -41,6 +41,14 @@
 					<label>Departure date</label>
 					<input type="date" value.bind="bookEntry.dpdate" />
 				</div>
+				<div>
+					<label>Guest left:</label>
+					<select value.bind="bookEntry.hasLeft">
+						<option repeat.for="option of LeftOptions" value.bind="option">
+							${option}
+						</option>
+					</select>
+				</div>
 			</form>
 		</ai-dialog-body>
 		<ai-dialog-footer>

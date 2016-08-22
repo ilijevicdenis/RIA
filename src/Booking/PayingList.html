@@ -1,0 +1,30 @@
+<template>
+	<table>
+		<thead>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Country</th>
+			<th>City</th>
+			<th>Camp</th>
+			<th>Arrival date</th>
+		 	<th>Departure date</th>
+			<th>No. Nigths</th>
+			<th>Total (no tax)</th>
+			<th>Tax</th>
+			<th>Total</th>
+		</thead>
+		<tbody repeat.for="item of PayList">
+			<td>${item.fname}</td>
+			<td>${item.lname}</td>
+			<td>${item.country}</td>
+			<td>${item.city}</td>
+			<td>${item.camp}</td>
+			<td>${item.ardate}</td>
+			<td>${item.dpdate}</td>
+			<td>${item.nonights}</td>
+			<td>${item.ppnight}
+			<td>${item.tax}</td>
+			<td>${item.ukupno}</td>
+		</tbody>
+	</table>
+</template>

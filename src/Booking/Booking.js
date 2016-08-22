@@ -18,7 +18,15 @@ export class Booking {
 				title: "Booking list",
 				//auth: true,
 				nav: true
-			}		
+			},
+			{
+				route: "payinglist",
+				moduleId: "Booking/PayingList",
+				name: "Paying list",
+				title: "Paying list",
+				nav: true
+				//auth: true
+			}
 		]);
 	}
 }
