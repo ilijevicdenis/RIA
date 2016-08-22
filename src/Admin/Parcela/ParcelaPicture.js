@@ -20,6 +20,8 @@ export class ParcelaPicture {
 								  .subscribe( newvalue => {
 								  	this.repo.getCityListForCountry(newvalue).then(list => {
 								  		this.CityList = list;
+								  		if(this.CityList.length == 0)
+								  			this.ParcelaIds = [];
 								  	})
 								  });
 		
@@ -27,21 +29,28 @@ export class ParcelaPicture {
 									.subscribe(newvalue => {
 										this.repo.getCampList(this.SelectedCountry, newvalue).then(list => {
 											this.CampList = list;
+											if(this.CampList.length == 0)
+												this.ParcelaIds = [];
 										})
 									});
 
-			this.UpdateId = this.bindEngine.propertyObserver(this, "SelectedCamp")
-			.subscribe(newvalue => {
+	this.ParId = this.bindEngine.propertyObserver(this, "SelectedCamp")
+			.subscribe( newvalue => {
 				this.repo.getIds(this.SelectedCountry, this.SelectedCity, newvalue)
-				.then(idlist => {
-					this.ParcelaIds = [];
-					if(this.SelectedCity != "" && this.SelectedCamp != "") {
+				.then(list => {
+					if(this.CampList.length == 0) {
 						this.ParcelaIds = [];
-						for(let item of idlist)
-							this.ParcelaIds.push(item.parcelaId);
-					}
+					} else if(this.CampList.length > 0) {
+						this.ParcelaIds = [];
+						this.ParcelaId = "";
+						for(let item of list) {
+							if(item.parcelaId != "") 
+								this.ParcelaIds.push(item.parcelaId);
+						}
+					} 
 				})
-			});
+			});							
+
 	}
 
 	ResetForm() {
@@ -71,5 +80,6 @@ export class ParcelaPicture {
 	deactivate() {
 		this.UpdateCityList.dispose();
 		this.UpdateCampList.dispose();
+		this.ParId.dispose();
 	}
 }

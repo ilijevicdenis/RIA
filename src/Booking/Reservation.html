@@ -36,8 +36,12 @@
 		</select>
 	</div>
 	<div>
-		<label>Parcela Code:</label>
-		<input type="text" value.bind="ParcelaCode">
+		<label>Parcela Id:</label>
+		<Select value.bind="ParcelaId">
+			<option repeat.for="id of ParcelaIds" value.bind="id">
+				${id}
+			</option>
+		</Select>
 	</div>
 	<div>
 		<button>Save reservation</button>

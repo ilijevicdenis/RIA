@@ -15,6 +15,8 @@ export class Reservation {
 		this.CountryList = [];
 		this.CityList  = [];
 		this.CampList = [];
+		this.ParcelaIds = [],
+		this.ParcelaId = "";
 		this.SelectedCity = null;
 		this.SelectedCountry = null;
 		this.SelectedCamp = null;
@@ -27,8 +29,27 @@ export class Reservation {
 		this.CampSub = this.bindEngine.propertyObserver(this, "SelectedCity").subscribe( (newvalue) => {
 							this.dataRepo.getCampList(this.SelectedCountry, newvalue).then(list => {
 								this.CampList = list;
+								if(this.CampList.length == 0)
+									this.ParcelaIds = [];
 							})
 						});
+
+		this.ParId = this.bindEngine.propertyObserver(this, "SelectedCamp")
+			.subscribe( newvalue => {
+				this.dataRepo.getIds(this.SelectedCountry, this.SelectedCity, newvalue)
+				.then(list => {
+					if(this.CampList.length == 0) {
+						this.ParcelaIds = [];
+					} else if(this.CampList.length > 0) {
+						this.ParcelaIds = [];
+						this.ParcelaId = "";
+						for(let item of list) {
+							if(item.parcelaId != "") 
+								this.ParcelaIds.push(item.parcelaId);
+						}
+					} 
+				})
+			});
 	}
 
 	activate() {
@@ -44,5 +65,6 @@ export class Reservation {
 	deactivate() {
 		this.CitySub.dispose();
 		this.CampSub.dispose();
+		this.ParId.dispose();
 	}
 }

@@ -26,6 +26,10 @@ export class NewParcela {
 								  .subscribe( newvalue => {
 								  	this.Repo.getCityListForCountry(newvalue).then(list => {
 								  		this.CityList = list;
+								  		if(this.CityList.length == 0) {
+								  			this.CampList = [];
+								  			this.ParcelaIds = [];
+								  		}
 								  	})
 								  });
 		
@@ -33,6 +37,9 @@ export class NewParcela {
 									.subscribe(newvalue => {
 										this.Repo.getCampList(this.SelectedCountry, newvalue).then(list => {
 											this.CampList = list;
+											if(this.CampList.length == 0) {
+												this.ParcelaIds = [];
+											}
 										})
 									});
 
@@ -41,10 +48,11 @@ export class NewParcela {
 				this.Repo.getIds(this.SelectedCountry, this.SelectedCity, newvalue)
 				.then(idlist => {
 					this.ParcelaIds = [];
-					if(this.SelectedCity != "" && this.SelectedCamp != "") {
+					if(this.CampList.length > 0) {
 						this.ParcelaIds = [];
 						for(let item of idlist)
-							this.ParcelaIds.push(item.parcelaId);
+							if(item.parcelaId != "")
+								this.ParcelaIds.push(item.parcelaId);
 					}
 				})
 			});
