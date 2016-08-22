@@ -62,6 +62,20 @@ export class Reservation {
 		]);
 	}
 
+	Save() {
+		let NewReservationObject = {
+			email: this.ReservationEmail,
+			ardate: this.ArrivalDate,
+			dpdate: this.DepartureDate,
+			parcelaId: this.ParcelaId,
+			availability: "Occupied",
+			desc: "User reservation"
+		}
+
+		console.log(JSON.stringify(NewReservationObject));
+		this.dataRepo.saveReservation(NewReservationObject);
+	}
+
 	deactivate() {
 		this.CitySub.dispose();
 		this.CampSub.dispose();

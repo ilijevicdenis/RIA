@@ -19,7 +19,8 @@ export class BookingList {
 		return this.dataRepo.getBookingList().then(blist => {
 			for(let item of blist) {
 				let tempItem = new BookEntryTemplate(item.id, item.fname, item.lname, 
-					 item.email, item.pnumber, item.country, item.city, item.camp, item.parcelaCode,
+					 item.email, item.pnumber, item.country, item.city, item.campName,
+					 item.campID, item.parcelaCode,
 					 item.parcelaId, item.ardate, item.dpdate, false);
 				this.bookingList.push(tempItem);
 			}
@@ -50,6 +51,7 @@ export class BookingList {
 					this.restoreData();
 				}
 				else {
+					console.log(JSON.stringify(this.generateJSON()));
 					this.dataRepo.updateReservation(this.generateJSON());
 				}
 			});
@@ -78,10 +80,11 @@ export class BookingList {
 			pnumber: this.bookEntry.pnumber,
 			country: this.bookEntry.country,
 			city: this.bookEntry.city,
-			camp: this.bookEntry.camp,
+			camp: this.bookEntry.campID,
 			parcelaId: this.bookEntry.parcelaId,
 			ardate: this.bookEntry.ardate,
-			dpdate: this.bookEntry.dpdate
+			dpdate: this.bookEntry.dpdate,
+			gostovanjeId: this.bookEntry.id
 		};
 
 		return ReservationObject;

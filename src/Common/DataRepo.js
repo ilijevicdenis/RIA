@@ -132,7 +132,7 @@ export class DataRepo {
 	}
 
 	updateReservation(ReservationObject) {
-		let updateReservationUrl = this.api + "/booking/list";
+		let updateReservationUrl = this.api + "/booking/registration";
 		this.httpClient.fetch(updateReservationUrl, {
 			method: "PUT",
 			body: json(ReservationObject)
@@ -140,9 +140,17 @@ export class DataRepo {
 	}
 
 	deleteReservation(ReservationObject) {
-		let deleteReservationUrl = this.api + "/booking/list";
+		let deleteReservationUrl = this.api + "/booking/registration";
 		this.httpClient.fetch(deleteReservationUrl, {
 			method: "DELETE",
+			body: json(ReservationObject)
+		});
+	}
+
+	saveReservation(ReservationObject) {
+		let saveReservationUrl = this.api + "/booking/registration";
+		this.httpClient.fetch(saveReservationUrl, {
+			method: "POST",
 			body: json(ReservationObject)
 		});
 	}

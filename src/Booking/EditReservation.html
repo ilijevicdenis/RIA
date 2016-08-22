@@ -6,44 +6,32 @@
 		<ai-dialog-body>
 			<form>
 				<div>
-					<label>First name</label>
+					<label>First name:</label>
 					<input type="text" value.bind="bookEntry.fname" />
 				</div>
 				<div>
-					<label>Last name</label>
+					<label>Last name:</label>
 					<input type="text" value.bind="bookEntry.lname" />
 				</div>
 				<div>
-					<label>Email</label>
-					<input type="text" value.bind="bookEntry.email" />
+					<label>Email:</label>
+					<label>${bookEntry.email}</label>
 				</div>
 				<div>
-					<label>Phone number</label>
+					<label>Phone number:</label>
 					<input type="text" value.bind="bookEntry.pnumber" />
 				</div>
 				<div>
-					<label>Country</label>
-					<input type="text" value.bind="bookEntry.country" />
+					<label>Country:</label>
+					<label> ${bookEntry.country} </label>
 				</div>
 				<div>
-					<label>City</label>
-					<input type="text" value.bind="bookEntry.city" />
+					<label>City:</label>
+					<label> ${bookEntry.city} </label>
 				</div>
 				<div>
 					<label>Camp:</label>
-					<input type="text" value.bind="bookEntry.camp">
-				</div>
-				<div>
-					<label>Parcela</label>
-					<input type="text" value.bind="bookEntry.parcelaCode" />
-				</div>
-				<div>
-					<label>ParcelaId</label>
-					<label value.bind="bookEntry.parcelaId" />
-				</div>
-				<div>
-					<label>Reservation date</label>
-					<input type="date" value.bind="bookEntry.rsdate" />
+					<label> ${bookEntry.campName} </label>
 				</div>
 				<div>
 					<label>Arrival date</label>
